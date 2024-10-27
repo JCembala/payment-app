@@ -13,6 +13,8 @@ gem "jbuilder"
 gem 'tzinfo-data', platforms: %i[ jruby ]
 gem "bootsnap", require: false
 gem "stripe"
+gem "sassc-rails"
+gem "bootstrap"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri ]

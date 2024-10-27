@@ -13,9 +13,11 @@ ENV BUNDLE_PATH="/usr/local/bundle"
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
-# Install packages needed to build gems
+# Install packages needed to build gems and Node.js
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips pkg-config
+    apt-get install --no-install-recommends -y build-essential git libpq-dev libvips pkg-config curl && \
+    curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
+    apt-get install -y nodejs
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
@@ -35,6 +37,8 @@ FROM base
 # Install packages needed for deployment and building native extensions
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl libvips postgresql-client build-essential && \
+    curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
+    apt-get install -y nodejs && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built artifacts: gems, application

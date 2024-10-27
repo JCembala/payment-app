@@ -1,7 +1,15 @@
-<% @packages.each do |package| %>
-  <div>
-    <h2><%= package.name %></h2>
-    <p>Price: $<%= package.price_dollars %>/month</p>
-    <%= button_to 'Buy Now', orders_path(package_id: package.id), method: :post, data: { turbo: false } %>
+<div class="container">
+  <div class="row justify-content-center">
+    <% @packages.each do |package| %>
+      <div class="col-md-2 d-flex align-items-stretch mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title"><%= package.name %></h2>
+            <p class="card-text">Price: $<%= package.price_dollars %>/month</p>
+            <%= button_to 'Buy Now', orders_path(package_id: package.id), method: :post, class: 'btn btn-primary', data: { turbo: false } %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
