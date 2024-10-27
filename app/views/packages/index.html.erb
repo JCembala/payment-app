@@ -1,0 +1,7 @@
+<% @packages.each do |package| %>
+  <div>
+    <h2><%= package.name %></h2>
+    <p>Price: $<%= package.price_dollars %>/month</p>
+    <%= button_to 'Buy Now', orders_path(package_id: package.id), method: :post, data: { turbo: false } %>
+  </div>
+<% end %>
