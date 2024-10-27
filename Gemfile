@@ -12,6 +12,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem 'tzinfo-data', platforms: %i[ jruby ]
 gem "bootsnap", require: false
+gem "stripe"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri ]
