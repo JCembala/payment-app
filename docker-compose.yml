@@ -28,6 +28,14 @@ services:
     env_file:
       - .env
 
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+    networks:
+      - app-network
+
 volumes:
   postgres_data:
   bundle_data:
