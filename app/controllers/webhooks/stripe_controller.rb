@@ -38,6 +38,7 @@ module Webhooks
       return if order.nil?
 
       order.update(status: :paid)
+      OrderMailer.checkout_complete(order).deliver_now
     end
 
     def handle_checkout_expired(event)
@@ -47,6 +48,7 @@ module Webhooks
       return if order.nil?
 
       order.update(status: :failed)
+      OrderMailer.checkout_expired(order).deliver_now
     end
   end
 end

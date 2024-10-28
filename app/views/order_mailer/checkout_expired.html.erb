@@ -1,0 +1,4 @@
+<h1>Order Expired</h1>
+<p>Dear <%= @order.user.email %>,</p>
+<p>We regret to inform you that your order for <%= @order.package.name %> from <%= @order.created_at %> has expired.</p>
+<p>Thank you for your understanding.</p>
