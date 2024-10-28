@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_27_071059) do
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "package_id", null: false
-    t.string "status", null: false
+    t.integer "status", null: false
     t.string "stripe_session_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,12 +30,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_27_071059) do
     t.integer "price_cents", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_packages_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "orders", "packages"

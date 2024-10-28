@@ -6,5 +6,7 @@ class CreatePackages < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
+
+    add_index :packages, :name, unique: true
   end
 end

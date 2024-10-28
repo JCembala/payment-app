@@ -19,10 +19,17 @@ class OrdersController < ApplicationController
         }],
       mode: 'subscription',
       success_url: payment_success_url,
-      cancel_url: payment_cancel_url
+      cancel_url: payment_cancel_url,
+      expires_at: Time.now.to_i + 30.minutes.to_i
     )
 
-    @order = Order.create(user: User.first, package: package, status: 'pending', stripe_session_id: session.id)
+    @order =
+      Order.create(
+        user: User.first,
+        package: package,
+        status: :pending,
+        stripe_session_id: session.id
+      )
 
     redirect_to session.url, allow_other_host: true, status: 303
   end

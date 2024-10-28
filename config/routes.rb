@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     get 'cancel', to: 'cancel#index'
   end
 
+  namespace :webhooks do
+    post 'stripe', to: 'stripe#create'
+  end
+
   resources :orders, only: [:index, :create]
   resources :packages, only: [:index]
 end
