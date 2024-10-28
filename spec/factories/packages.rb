@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :package do
-    name { "Basic" }
+    sequence(:name) { |n| "Package #{n}" }
     price_cents { 10000 }
   end
 end
