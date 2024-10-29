@@ -21,7 +21,7 @@ You need also to set the `STRIPE_WEBHOOK_SECRET` with the webhook secret that yo
 It will be printed when you run Stripe to listen for events - look at the section [Webhooks](#webhooks). <br>
 
 ### Building and running the API
-After that, you can run the following command to start the API:
+After cloning repository, you can run the following command to build and start the API:
 ```bash
 docker compose up --build
 ```
@@ -49,3 +49,9 @@ stripe listen --forward-to localhost:3000/webhooks/stripe
 ```
 This command should print your webhook secret like so: `Your webhook signing secret is whsec_...`. <br>
 You need to keep this terminal open in order to receive the events from Stripe.
+
+Now you can test the APP by going to [localhost:3000](http://localhost:3000) and creating a new payment. <br>
+You can see the events in the terminal where you started the Stripe CLI. <br>
+We listen for the `checkout.session.completed` and `checkout.session.expired` events in order to update the payment status. <br>
+Those events were chosen because we are using the Stripe Checkout which can be visited until it's expired. <br>
+If the session is completed, the payment is successful, if it's expired, the payment is failed. <br>
